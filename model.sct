@@ -31,19 +31,19 @@
               <vertices xsi:type="sgraph:State" xmi:id="_gAbmUD7pEeufs6uDky-Tbw" specification="entry /&#xA;startPos.setZero = true;&#xA;grid.orientation = 2&#xA;exit /&#xA;startPos.setZero = false" name="Calibrate" incomingTransitions="_rCtoAD7pEeufs6uDky-Tbw">
                 <outgoingTransitions xmi:id="_EuQ40D7tEeufs6uDky-Tbw" specification="tick" target="_fEeNAD7sEeufs6uDky-Tbw"/>
               </vertices>
-              <vertices xsi:type="sgraph:State" xmi:id="_fEeNAD7sEeufs6uDky-Tbw" specification="entry /&#xA;needTurn = (grid.wallLeft == 1) ?  -1 : ((grid.wallFront == 1) ? 0 : 1)" name="ChooseTurn" incomingTransitions="_EuQ40D7tEeufs6uDky-Tbw _Bken8D7uEeufxquDky-Tbw">
+              <vertices xsi:type="sgraph:State" xmi:id="_fEeNAD7sEeufs6uDky-Tbw" specification="entry /&#xA;needTurn = (grid.wallLeft == 0) ?  -1 : ((grid.wallFront == 0) ? 0 : ((grid.wallRight == 0) ? 1 : 2))" name="ChooseTurn" incomingTransitions="_EuQ40D7tEeufs6uDky-Tbw _Bken8D7uEeufxquDky-Tbw">
                 <outgoingTransitions xmi:id="_KsHXUD7tEeufs6uDky-Tbw" specification="tick [needTurn == -1]" target="_HF-XED7tEeufs6uDky-Tbw"/>
-                <outgoingTransitions xmi:id="_OMQdQD7tEeufwKuDky-Tbw" specification="tick [needTurn == 1]" target="_NDTRID7tEeufwKuDky-Tbw"/>
+                <outgoingTransitions xmi:id="_OMQdQD7tEeufwKuDky-Tbw" specification="tick [needTurn > 0]" target="_NDTRID7tEeufwKuDky-Tbw"/>
                 <outgoingTransitions xmi:id="_1dUo4D7tEeufw6uDky-Tbw" specification="tick [needTurn == 0]" target="_zQ7p0D7tEeufw6uDky-Tbw"/>
               </vertices>
-              <vertices xsi:type="sgraph:State" xmi:id="_HF-XED7tEeufs6uDky-Tbw" specification="entry /&#xA;output.rotation = rotationStep;&#xA;grid.orientation = grid.orientation == 0 ? -1 : grid.orientation - 1;&#xA;toYaw = grid.orientation == 3 ? -90 : (2-grid.orientation) * 90&#xA;exit /&#xA;output.rotation = 0.0" name="TurnLeft" incomingTransitions="_KsHXUD7tEeufs6uDky-Tbw">
+              <vertices xsi:type="sgraph:State" xmi:id="_HF-XED7tEeufs6uDky-Tbw" specification="entry /&#xA;output.rotation = rotationStep;&#xA;grid.orientation = grid.orientation == 0 ? -1 : grid.orientation - 1;&#xA;toYaw = grid.orientation == 3 ? 90 : (grid.orientation) * -90&#xA;exit /&#xA;output.rotation = 0.0" name="TurnLeft" incomingTransitions="_KsHXUD7tEeufs6uDky-Tbw">
                 <outgoingTransitions xmi:id="_3ZHAID7tEeufxauDky-Tbw" specification="tick&#xA;[&#xA;&#x9;imu.yaw > toYaw - 1.0 &amp;&amp;&#xA;&#x9;imu.yaw &lt; toYaw + 1.0&#xA;]" target="_zQ7p0D7tEeufw6uDky-Tbw"/>
               </vertices>
-              <vertices xsi:type="sgraph:State" xmi:id="_NDTRID7tEeufwKuDky-Tbw" specification="entry /&#xA;output.rotation = rotationStep;&#xA;grid.orientation = grid.orientation == 3 ? 1 : grid.orientation + 1;&#xA;toYaw = grid.orientation == 3 ? -90 : (2-grid.orientation) * 90&#xA;exit /&#xA;output.rotation = 0.0" name="TurnRight" incomingTransitions="_OMQdQD7tEeufwKuDky-Tbw">
+              <vertices xsi:type="sgraph:State" xmi:id="_NDTRID7tEeufwKuDky-Tbw" specification="entry /&#xA;output.rotation = rotationStep;&#xA;grid.orientation = grid.orientation == 3 ? 1 : grid.orientation + needTurn;&#xA;grid.orientation = grid.orientation > 3 ? grid.orientation - 4 : grid.orientation;&#xA;toYaw = grid.orientation == 3 ? 90 : (grid.orientation) * -90&#xA;exit /&#xA;output.rotation = 0.0" name="TurnRight" incomingTransitions="_OMQdQD7tEeufwKuDky-Tbw">
                 <outgoingTransitions xmi:id="_2kXJcD7tEeufxKuDky-Tbw" specification="tick&#xA;[&#xA;&#x9;imu.yaw > toYaw - 1.0 &amp;&amp;&#xA;&#x9;imu.yaw &lt; toYaw + 1.0&#xA;]" target="_zQ7p0D7tEeufw6uDky-Tbw"/>
               </vertices>
-              <vertices xsi:type="sgraph:State" xmi:id="_zQ7p0D7tEeufw6uDky-Tbw" specification="entry /&#xA;output.speed = speedStep;&#xA;goToX = (grid.orientation == 1 || grid.orientation == 3) ? (odom.x + ((grid.orientation -2)*grid.gridSize)) : odom.x;&#xA;goToY = (grid.orientation == 0 || grid.orientation == 2) ? (odom.y + ((grid.orientation - 1)*(-grid.gridSize))) : odom.y&#xA;exit /&#xA;output.speed = 0.0" name="GoOne" incomingTransitions="_1dUo4D7tEeufw6uDky-Tbw _2kXJcD7tEeufxKuDky-Tbw _3ZHAID7tEeufxauDky-Tbw">
-                <outgoingTransitions xmi:id="_Bken8D7uEeufxquDky-Tbw" specification="tick&#xA;[&#xA;&#x9;odom.x > goToX - 0.01 &amp;&amp;&#xA;&#x9;odom.x &lt; goToX + 0.01 &amp;&amp;&#xA;&#x9;odom.y > goToY - 0.01 &amp;&amp;&#xA;&#x9;odom.y &lt; goToY + 0.01&#xA;]" target="_fEeNAD7sEeufs6uDky-Tbw"/>
+              <vertices xsi:type="sgraph:State" xmi:id="_zQ7p0D7tEeufw6uDky-Tbw" specification="entry /&#xA;output.speed = speedStep;&#xA;goToX = (grid.orientation == 1 || grid.orientation == 3) ? (odom.x + ((grid.orientation -2)*-grid.gridSize)) : odom.x;&#xA;goToY = (grid.orientation == 0 || grid.orientation == 2) ? (odom.y + ((grid.orientation - 1)*(-grid.gridSize))) : odom.y&#xA;exit /&#xA;output.speed = 0.0" name="GoOne" incomingTransitions="_1dUo4D7tEeufw6uDky-Tbw _2kXJcD7tEeufxKuDky-Tbw _3ZHAID7tEeufxauDky-Tbw">
+                <outgoingTransitions xmi:id="_Bken8D7uEeufxquDky-Tbw" specification="tick&#xA;[&#xA;&#x9;odom.x > goToX - 0.05 &amp;&amp;&#xA;&#x9;odom.x &lt; goToX + 0.05 &amp;&amp;&#xA;&#x9;odom.y > goToY - 0.05 &amp;&amp;&#xA;&#x9;odom.y &lt; goToY + 0.05&#xA;]" target="_fEeNAD7sEeufs6uDky-Tbw"/>
               </vertices>
             </regions>
           </vertices>
@@ -848,7 +848,7 @@
     <edges xmi:id="_39m1UD7iEeufoauDky-Tbw" type="Transition" element="_39kZIj7iEeufoauDky-Tbw" source="_39ij4D7iEeufoauDky-Tbw" target="_39jK8D7iEeufoauDky-Tbw">
       <children xsi:type="notation:DecorationNode" xmi:id="_39m1UT7iEeufoauDky-Tbw" type="TransitionExpression">
         <styles xsi:type="notation:ShapeStyle" xmi:id="_39m1Uj7iEeufoauDky-Tbw"/>
-        <layoutConstraint xsi:type="notation:Location" xmi:id="_39m1Uz7iEeufoauDky-Tbw" y="10"/>
+        <layoutConstraint xsi:type="notation:Location" xmi:id="_39m1Uz7iEeufoauDky-Tbw" x="-8" y="38"/>
       </children>
       <styles xsi:type="notation:ConnectorStyle" xmi:id="_39m1VD7iEeufoauDky-Tbw" routing="Rectilinear" lineColor="4210752"/>
       <styles xsi:type="notation:FontStyle" xmi:id="_39m1VT7iEeufoauDky-Tbw" fontName="Verdana"/>
