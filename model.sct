@@ -73,10 +73,10 @@
           <vertices xsi:type="sgraph:Entry" xmi:id="_ywCkQT7iEeufoauDky-Tbw">
             <outgoingTransitions xmi:id="_ywHcwz7iEeufoauDky-Tbw" specification="" target="_ywAvED7iEeufoauDky-Tbw"/>
           </vertices>
-          <vertices xsi:type="sgraph:State" xmi:id="_ywAvED7iEeufoauDky-Tbw" specification="entry /&#xA;wallFront = false" name="NoWall" incomingTransitions="_ywHcwz7iEeufoauDky-Tbw _ywIq4D7iEeufoauDky-Tbw">
+          <vertices xsi:type="sgraph:State" xmi:id="_ywAvED7iEeufoauDky-Tbw" specification="entry /&#xA;grid.wallFront = 0" name="NoWall" incomingTransitions="_ywHcwz7iEeufoauDky-Tbw _ywIq4D7iEeufoauDky-Tbw">
             <outgoingTransitions xmi:id="_ywFAgD7iEeufoauDky-Tbw" specification="tick [laserDistance.dFrontMean &lt; wallDistanceIs]" target="_ywCkTj7iEeufoauDky-Tbw"/>
           </vertices>
-          <vertices xsi:type="sgraph:State" xmi:id="_ywCkTj7iEeufoauDky-Tbw" specification="entry /&#xA;wallFront = true" name="IsWall" incomingTransitions="_ywFAgD7iEeufoauDky-Tbw">
+          <vertices xsi:type="sgraph:State" xmi:id="_ywCkTj7iEeufoauDky-Tbw" specification="entry /&#xA;grid.wallFront = 1" name="IsWall" incomingTransitions="_ywFAgD7iEeufoauDky-Tbw">
             <outgoingTransitions xmi:id="_ywIq4D7iEeufoauDky-Tbw" specification="tick [laserDistance.dFrontMean > wallDistanceIs]" target="_ywAvED7iEeufoauDky-Tbw"/>
           </vertices>
         </regions>
@@ -84,10 +84,10 @@
           <vertices xsi:type="sgraph:Entry" xmi:id="_18UTAD7iEeufoauDky-Tbw">
             <outgoingTransitions xmi:id="_18UTAT7iEeufoauDky-Tbw" specification="" target="_18UTAj7iEeufoauDky-Tbw"/>
           </vertices>
-          <vertices xsi:type="sgraph:State" xmi:id="_18UTAj7iEeufoauDky-Tbw" specification="entry /&#xA;wallBack = false" name="NoWall" incomingTransitions="_18UTAT7iEeufoauDky-Tbw _18WvQD7iEeufoauDky-Tbw">
+          <vertices xsi:type="sgraph:State" xmi:id="_18UTAj7iEeufoauDky-Tbw" specification="entry /&#xA;grid.wallBack = 0" name="NoWall" incomingTransitions="_18UTAT7iEeufoauDky-Tbw _18WvQD7iEeufoauDky-Tbw">
             <outgoingTransitions xmi:id="_18UTFT7iEeufoauDky-Tbw" specification="tick [laserDistance.dBackMean &lt; wallDistanceIs]" target="_18WIMD7iEeufoauDky-Tbw"/>
           </vertices>
-          <vertices xsi:type="sgraph:State" xmi:id="_18WIMD7iEeufoauDky-Tbw" specification="entry /&#xA;wallBack = true" name="IsWall" incomingTransitions="_18UTFT7iEeufoauDky-Tbw">
+          <vertices xsi:type="sgraph:State" xmi:id="_18WIMD7iEeufoauDky-Tbw" specification="entry /&#xA;grid.wallBack = 1" name="IsWall" incomingTransitions="_18UTFT7iEeufoauDky-Tbw">
             <outgoingTransitions xmi:id="_18WvQD7iEeufoauDky-Tbw" specification="tick [laserDistance.dBackMean > wallDistanceIs]" target="_18UTAj7iEeufoauDky-Tbw"/>
           </vertices>
         </regions>
@@ -95,10 +95,10 @@
           <vertices xsi:type="sgraph:Entry" xmi:id="_2mvJDD7iEeufoauDky-Tbw">
             <outgoingTransitions xmi:id="_2mvJDT7iEeufoauDky-Tbw" specification="" target="_2mwXID7iEeufoauDky-Tbw"/>
           </vertices>
-          <vertices xsi:type="sgraph:State" xmi:id="_2mwXID7iEeufoauDky-Tbw" specification="entry /&#xA;wallRight = false" name="NoWall" incomingTransitions="_2mvJDT7iEeufoauDky-Tbw _2mxlUz7iEeufoauDky-Tbw">
+          <vertices xsi:type="sgraph:State" xmi:id="_2mwXID7iEeufoauDky-Tbw" specification="entry /&#xA;grid.wallRight = 0" name="NoWall" incomingTransitions="_2mvJDT7iEeufoauDky-Tbw _2mxlUz7iEeufoauDky-Tbw">
             <outgoingTransitions xmi:id="_2mwXMz7iEeufoauDky-Tbw" specification="tick [laserDistance.dRightMean &lt; wallDistanceIs]" target="_2mxlQD7iEeufoauDky-Tbw"/>
           </vertices>
-          <vertices xsi:type="sgraph:State" xmi:id="_2mxlQD7iEeufoauDky-Tbw" specification="entry /&#xA;wallRight = true" name="IsWall" incomingTransitions="_2mwXMz7iEeufoauDky-Tbw">
+          <vertices xsi:type="sgraph:State" xmi:id="_2mxlQD7iEeufoauDky-Tbw" specification="entry /&#xA;grid.wallRight = 1" name="IsWall" incomingTransitions="_2mwXMz7iEeufoauDky-Tbw">
             <outgoingTransitions xmi:id="_2mxlUz7iEeufoauDky-Tbw" specification="tick [laserDistance.dRightMean > wallDistanceIs]" target="_2mwXID7iEeufoauDky-Tbw"/>
           </vertices>
         </regions>
@@ -106,10 +106,10 @@
           <vertices xsi:type="sgraph:Entry" xmi:id="_39jyAD7iEeufoauDky-Tbw">
             <outgoingTransitions xmi:id="_39jyAT7iEeufoauDky-Tbw" specification="" target="_39jyAj7iEeufoauDky-Tbw"/>
           </vertices>
-          <vertices xsi:type="sgraph:State" xmi:id="_39jyAj7iEeufoauDky-Tbw" specification="entry /&#xA;wallLeft = false" name="NoWall" incomingTransitions="_39jyAT7iEeufoauDky-Tbw _39lAMz7iEeufoauDky-Tbw">
+          <vertices xsi:type="sgraph:State" xmi:id="_39jyAj7iEeufoauDky-Tbw" specification="entry /&#xA;grid.wallLeft = 0" name="NoWall" incomingTransitions="_39jyAT7iEeufoauDky-Tbw _39lAMz7iEeufoauDky-Tbw">
             <outgoingTransitions xmi:id="_39kZIj7iEeufoauDky-Tbw" specification="tick [laserDistance.dLeftMean &lt; wallDistanceIs]" target="_39lAID7iEeufoauDky-Tbw"/>
           </vertices>
-          <vertices xsi:type="sgraph:State" xmi:id="_39lAID7iEeufoauDky-Tbw" specification="entry /&#xA;wallLeft = true" name="IsWall" incomingTransitions="_39kZIj7iEeufoauDky-Tbw">
+          <vertices xsi:type="sgraph:State" xmi:id="_39lAID7iEeufoauDky-Tbw" specification="entry /&#xA;grid.wallLeft = 1" name="IsWall" incomingTransitions="_39kZIj7iEeufoauDky-Tbw">
             <outgoingTransitions xmi:id="_39lAMz7iEeufoauDky-Tbw" specification="tick [laserDistance.dLeftMean > wallDistanceIs]" target="_39jyAj7iEeufoauDky-Tbw"/>
           </vertices>
         </regions>
