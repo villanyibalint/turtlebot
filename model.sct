@@ -28,7 +28,7 @@
               <vertices xsi:type="sgraph:Entry" xmi:id="_ZS8aoD7pEeufq6uDky-Tbw">
                 <outgoingTransitions xmi:id="_rCtoAD7pEeufs6uDky-Tbw" specification="" target="_gAbmUD7pEeufs6uDky-Tbw"/>
               </vertices>
-              <vertices xsi:type="sgraph:State" xmi:id="_gAbmUD7pEeufs6uDky-Tbw" specification="entry /&#xA;startPos.setZero = true;&#xA;grid.orientation = 2&#xA;exit /&#xA;startPos.setZero = false" name="Calibrate" incomingTransitions="_rCtoAD7pEeufs6uDky-Tbw">
+              <vertices xsi:type="sgraph:State" xmi:id="_gAbmUD7pEeufs6uDky-Tbw" specification="entry /&#xA;startPos.setZero = true;&#xA;grid.orientation = imu.yaw > 170 ? 2 : (imu.yaw > 10 ? 1 : (imu.yaw > -10 ? 0 : (imu.yaw > - 100 ? 3 : 2)))&#xA;exit /&#xA;startPos.setZero = false" name="Calibrate" incomingTransitions="_rCtoAD7pEeufs6uDky-Tbw">
                 <outgoingTransitions xmi:id="_EuQ40D7tEeufs6uDky-Tbw" specification="tick" target="_fEeNAD7sEeufs6uDky-Tbw"/>
               </vertices>
               <vertices xsi:type="sgraph:State" xmi:id="_fEeNAD7sEeufs6uDky-Tbw" specification="entry /&#xA;needTurn = (grid.wallLeft == 0) ?  -1 : ((grid.wallFront == 0) ? 0 : ((grid.wallRight == 0) ? 1 : 2))" name="ChooseTurn" incomingTransitions="_EuQ40D7tEeufs6uDky-Tbw _Bken8D7uEeufxquDky-Tbw">
@@ -36,7 +36,7 @@
                 <outgoingTransitions xmi:id="_OMQdQD7tEeufwKuDky-Tbw" specification="tick [needTurn > 0]" target="_NDTRID7tEeufwKuDky-Tbw"/>
                 <outgoingTransitions xmi:id="_1dUo4D7tEeufw6uDky-Tbw" specification="tick [needTurn == 0]" target="_zQ7p0D7tEeufw6uDky-Tbw"/>
               </vertices>
-              <vertices xsi:type="sgraph:State" xmi:id="_HF-XED7tEeufs6uDky-Tbw" specification="entry /&#xA;output.rotation = rotationStep;&#xA;grid.orientation = grid.orientation == 0 ? -1 : grid.orientation - 1;&#xA;toYaw = grid.orientation == 3 ? 90 : (grid.orientation) * -90&#xA;exit /&#xA;output.rotation = 0.0" name="TurnLeft" incomingTransitions="_KsHXUD7tEeufs6uDky-Tbw">
+              <vertices xsi:type="sgraph:State" xmi:id="_HF-XED7tEeufs6uDky-Tbw" specification="entry /&#xA;output.rotation = rotationStep;&#xA;grid.orientation = grid.orientation == 0 ? 3 : grid.orientation - 1;&#xA;toYaw = grid.orientation == 3 ? 90 : (grid.orientation) * -90&#xA;exit /&#xA;output.rotation = 0.0" name="TurnLeft" incomingTransitions="_KsHXUD7tEeufs6uDky-Tbw">
                 <outgoingTransitions xmi:id="_3ZHAID7tEeufxauDky-Tbw" specification="tick&#xA;[&#xA;&#x9;imu.yaw > toYaw - yawPrecision &amp;&amp;&#xA;&#x9;imu.yaw &lt; toYaw + yawPrecision&#xA;]" target="_zQ7p0D7tEeufw6uDky-Tbw"/>
               </vertices>
               <vertices xsi:type="sgraph:State" xmi:id="_NDTRID7tEeufwKuDky-Tbw" specification="entry /&#xA;output.rotation = -rotationStep;&#xA;grid.orientation = grid.orientation + needTurn;&#xA;grid.orientation = grid.orientation > 3 ? grid.orientation - 4 : grid.orientation;&#xA;toYaw = grid.orientation == 3 ? 90 : (grid.orientation) * -90&#xA;exit /&#xA;output.rotation = 0.0" name="TurnRight" incomingTransitions="_OMQdQD7tEeufwKuDky-Tbw">
